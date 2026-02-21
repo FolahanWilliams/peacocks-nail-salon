@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { Check } from "lucide-react";
+import { FadeIn } from "@/components/animations/fade-in";
 
 export const metadata: Metadata = {
     title: "About Us",
@@ -46,12 +47,14 @@ export default function AboutPage() {
                             <h3 className="font-heading text-2xl font-medium text-foreground mb-6">Why Peacocks?</h3>
                             <ul className="space-y-4">
                                 {reasons.map((reason, index) => (
-                                    <li key={index} className="flex items-start gap-3">
-                                        <div className="bg-accent/20 p-1 rounded-full text-accent mt-0.5 shrink-0">
-                                            <Check className="h-4 w-4" />
-                                        </div>
-                                        <span className="text-foreground leading-relaxed">{reason}</span>
-                                    </li>
+                                    <FadeIn key={index} delay={index * 150} direction="right">
+                                        <li className="flex items-start gap-3">
+                                            <div className="bg-accent/20 p-1 rounded-full text-accent mt-0.5 shrink-0">
+                                                <Check className="h-4 w-4" />
+                                            </div>
+                                            <span className="text-foreground leading-relaxed">{reason}</span>
+                                        </li>
+                                    </FadeIn>
                                 ))}
                             </ul>
                         </div>

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Sparkles, Heart } from "lucide-react";
+import { FadeIn } from "@/components/animations/fade-in";
 
 export default function Home() {
   const jsonLd = {
@@ -46,7 +47,7 @@ export default function Home() {
       <section className="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1519014816548-bf5fe459e98b?auto=format&fit=crop&q=80&w=2000"
+            src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000"
             alt="Elegant nail salon interior"
             fill
             className="object-cover brightness-[0.85]"
@@ -57,15 +58,22 @@ export default function Home() {
           <Badge className="mb-6 bg-accent/90 text-accent-foreground hover:bg-accent border-none px-4 py-1 text-sm rounded-full backdrop-blur-sm">
             Premium Nail Care in Woking
           </Badge>
-          <h1 className="font-heading text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg tracking-tight">
-            Where Elegance <br className="hidden md:block" /> Meets Artistry.
-          </h1>
-          <p className="text-lg md:text-xl text-white/95 mb-10 max-w-2xl font-light drop-shadow-md">
-            Experience unparalleled nail treatments in the heart of Woking at The Peacocks Centre.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-none text-base h-14 px-8">
-              <Link href="tel:01483730833">Call to Book</Link>
+          <FadeIn>
+            <h1 className="font-heading text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg tracking-tight">
+              Where Elegance <br className="hidden md:block" /> Meets Artistry.
+            </h1>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <p className="text-lg md:text-xl text-white/95 mb-10 max-w-2xl font-light drop-shadow-md">
+              Experience unparalleled nail treatments in the heart of Woking at The Peacocks Centre.
+            </p>
+          </FadeIn>
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-4">
+            <Button asChild size="lg" className="relative overflow-hidden bg-accent text-accent-foreground hover:bg-accent/90 rounded-none text-base h-14 px-8 group">
+              <Link href="tel:01483730833">
+                <span className="relative z-10">Call to Book</span>
+                <span className="absolute inset-0 -translate-x-full animate-[shimmer_2.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-none"></span>
+              </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-white/10 text-white border-white/40 hover:bg-white/20 hover:text-white backdrop-blur-md rounded-none text-base h-14 px-8">
               <Link href="/services">View Services</Link>
@@ -150,21 +158,25 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {reviews.map((review, i) => (
-              <Card key={i} className="bg-background border-border rounded-none shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-8 flex flex-col items-center text-center gap-6">
-                  <div className="flex gap-1 text-accent">
-                    {[...Array(5)].map((_, j) => (
-                      <Star key={j} className="h-5 w-5 fill-current" />
-                    ))}
-                  </div>
-                  <p className="font-light text-muted-foreground italic leading-relaxed">
-                    &quot;{review.text}&quot;
-                  </p>
-                  <p className="font-heading font-medium text-foreground uppercase tracking-wider text-sm">
-                    — {review.author}
-                  </p>
-                </CardContent>
-              </Card>
+              <FadeIn key={i} delay={i * 150} direction="up" className="h-full">
+                <Card className="bg-background border-border rounded-none shadow-sm hover:shadow-md transition-shadow h-full">
+                  <CardContent className="p-8 flex flex-col items-center text-center gap-6 h-full justify-between">
+                    <div className="flex flex-col items-center gap-6">
+                      <div className="flex gap-1 text-accent">
+                        {[...Array(5)].map((_, j) => (
+                          <Star key={j} className="h-5 w-5 fill-current" />
+                        ))}
+                      </div>
+                      <p className="font-light text-muted-foreground italic leading-relaxed">
+                        &quot;{review.text}&quot;
+                      </p>
+                    </div>
+                    <p className="font-heading font-medium text-foreground uppercase tracking-wider text-sm mt-4">
+                      — {review.author}
+                    </p>
+                  </CardContent>
+                </Card>
+              </FadeIn>
             ))}
           </div>
         </div>

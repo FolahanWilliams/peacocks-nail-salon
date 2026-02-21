@@ -49,7 +49,7 @@ export default function ServicesPage() {
             <section className="py-24 container mx-auto px-4 md:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     {services.map((service) => (
-                        <Card key={service.title} className="bg-[#FFF8F0] border-border rounded-sm shadow-sm hover:shadow-md transition-shadow">
+                        <Card key={service.title} className="bg-[#FFF8F0] border-border rounded-sm shadow-sm">
                             <CardHeader className="flex flex-row items-center gap-6 pb-2">
                                 <div className="h-16 w-16 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm border border-border/50 text-accent">
                                     {service.icon}

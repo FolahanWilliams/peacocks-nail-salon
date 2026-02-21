@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { MapPin, Phone, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default function ContactPage() {
 
             {/* Main Content */}
             <section className="py-24 container mx-auto px-4 md:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-16">
 
                     <div className="flex flex-col gap-8">
                         <h2 className="font-heading text-3xl font-semibold text-foreground mb-2">Visit Us Today</h2>
@@ -89,7 +90,11 @@ export default function ContactPage() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col h-full rounded-sm overflow-hidden shadow-sm border border-border bg-card">
+                    <div className="hidden lg:flex justify-center">
+                        <Separator orientation="vertical" className="h-full bg-border" />
+                    </div>
+
+                    <div className="flex flex-col h-[600px] lg:h-full rounded-sm overflow-hidden shadow-sm border border-border bg-card">
                         <iframe
                             title="Peacocks Nail Salon Map"
                             src="https://maps.google.com/maps?q=22A%20The%20Peacocks%20Centre,%20Woking,%20Surrey,%20GU21%206GB&t=&z=15&ie=UTF8&iwloc=&output=embed"
